@@ -3,9 +3,9 @@ const router = express.Router();
 import itemController from "../controllers/item_controller";
 import authMiddleware from "../common/auth_middleware";
 
-router.get("/", authMiddleware, itemController.get.bind(itemController));
+router.get("/", itemController.get.bind(itemController));
 
-router.get("/:id", authMiddleware, itemController.getById.bind(itemController));
+router.get("/:id", itemController.getById.bind(itemController));
 
 router.post("/", authMiddleware, itemController.post.bind(itemController));
 

@@ -41,12 +41,23 @@ export class BaseController<ModelType>{
         }
     }
 
-    putById(req: Request, res: Response) {
-        res.send("put student by id: " + req.params.id);
+    async putById(req: Request, res: Response) {
+        try {
+            const result = await this.model.updateOne({ _id: req.params.id }, req.body).exec();
+            res.status(201).send(result);
+        } catch (err) {
+            res.status(406).send("Could not delete the requested obj: " + err.message)
+        }
     }
 
-    deleteById(req: Request, res: Response) {
-        res.send("delete student by id: " + req.params.id);
+    async deleteById(req: Request, res: Response) {
+        try {
+            const result = await this.model.deleteOne({ _id: req.params.id}).exec();
+            res.send("delete by id: " + req.params.id);
+            res.status(201).send(result);
+        } catch (err) {
+            res.status(406).send("Could not delete the requested obj: " + err.message)
+        }
     }
 }
 

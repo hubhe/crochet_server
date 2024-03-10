@@ -1,15 +1,15 @@
 import mongoose from "mongoose";
 
 export interface IComment{
-    game_id: string,
-    user_id: string,
-    comment: string,
-    replays: Array<string>,
-    likes: Array<number>,
+  item_id: string,
+  user_id: string,
+  comment: string,
+  replays: Array<string>,
+  likes: Array<number>,
 }
 
 const commentSchema = new mongoose.Schema<IComment>({
-  game_id: {
+  item_id: {
     type: String,
     required: true
   },

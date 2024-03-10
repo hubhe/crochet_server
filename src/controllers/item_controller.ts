@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import env from "dotenv";
 import ItemsModel, { Iitem } from "../models/item_model";
 import {BaseController} from "./base_controller";
 import { CurrencyExchangeProvider } from "../providers/currency_exchanger"

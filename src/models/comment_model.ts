@@ -5,7 +5,7 @@ export interface IComment{
   user_id: string,
   comment: string,
   replays: Array<string>,
-  likes: Array<number>,
+  likes: number,
 }
 
 const commentSchema = new mongoose.Schema<IComment>({
@@ -25,7 +25,7 @@ const commentSchema = new mongoose.Schema<IComment>({
     type: [String]
   },
   likes: {
-    type: [Number]
+    type: Number
   },
 });
 

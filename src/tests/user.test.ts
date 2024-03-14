@@ -48,9 +48,8 @@ describe("User tests", () => {
         expect(register.statusCode).toBe(201);
         const accessToken = register.body.accessToken;
         const response = await request(app)
-          .get("/user")
+          .get(`/user/${register.body.user._id}`)
           .set("Authorization", "JWT " + accessToken)
-          .set("id", register.body.user._id);
         expect(response.statusCode).toBe(200);
     });
 

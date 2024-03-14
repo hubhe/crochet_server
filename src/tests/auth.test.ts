@@ -45,11 +45,10 @@ describe("Auth tests", () => {
 expect(response2.statusCode).toBe(406);
   });
 
-  test("Test Register without name", async () => {
+  test("Test Register without password", async () => {
     const user_no_name = {
       email: "testUser@test.com",
-      password: "1234567890",
-    }
+    };
     const response = await request(app)
       .post("/auth/register")
       .send(user_no_name);

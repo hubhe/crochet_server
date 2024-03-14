@@ -46,6 +46,8 @@ const router = express.Router();
 */
 
 
+router.post("", authMiddleware, commentController.post.bind(commentController))
+
 /**
 * @swagger
 * /comments/by_user/:id:
@@ -66,7 +68,7 @@ const router = express.Router();
 *             schema:
 *               $ref: '#/components/schemas/Comment'
 */
-router.get("/by_user/:id", commentController.getCommentsByUser)
+router.get("/by_user/:id", commentController.getCommentsByUser.bind(commentController))
 
 /**
 * @swagger
@@ -88,7 +90,7 @@ router.get("/by_user/:id", commentController.getCommentsByUser)
 *             schema:
 *               $ref: '#/components/schemas/Comment'
 */
-router.get("/by_item/:id", commentController.getCommentsByItem)
+router.get("/by_item/:id", commentController.getCommentsByItem.bind(commentController))
 
 /**
 * @swagger
@@ -110,7 +112,7 @@ router.get("/by_item/:id", commentController.getCommentsByItem)
 *             schema:
 *               $ref: '#/components/schemas/Comment'
 */
-router.delete("/:id", authMiddleware, commentController.deleteById)
+router.delete("/:id", authMiddleware, commentController.deleteById.bind(commentController))
 
 /**
 * @swagger
@@ -132,6 +134,6 @@ router.delete("/:id", authMiddleware, commentController.deleteById)
 *             schema:
 *               $ref: '#/components/schemas/Comment'
 */
-router.put("/:id", authMiddleware, commentController.putById)
+router.put("/:id", authMiddleware, commentController.putById.bind(commentController))
 
 export default router;

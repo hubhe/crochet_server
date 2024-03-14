@@ -112,6 +112,26 @@ router.get("/by_item/:id", commentController.getCommentsByItem)
 */
 router.delete("/:id", authMiddleware, commentController.deleteById)
 
+/**
+* @swagger
+* /comments/:id:
+*   put:
+*     summary: Update a comment
+*     tags: [Comments]
+*     requestBody:
+*       required: true
+*       content:
+*         application/json:
+*           schema:
+*             $ref: '#/components/schemas/Comment'
+*     responses:
+*       406:
+*         description: Did not delete requested comments
+*         content:
+*           application/json:
+*             schema:
+*               $ref: '#/components/schemas/Comment'
+*/
 router.put("/:id", authMiddleware, commentController.putById)
 
 export default router;

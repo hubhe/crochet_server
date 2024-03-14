@@ -8,7 +8,6 @@ export interface IUser {
   imgUrl?: string;
   isAdmin?: boolean;
   refreshTokens?: string[];
-  wish_list: [{ type: mongoose.Schema.Types.ObjectId, ref: "Items" }];
   in_cart: [{ type: mongoose.Schema.Types.ObjectId, ref: "Items" }];
   comments: Array<{ type: mongoose.Schema.Types.ObjectId; ref: "comments" }>;
 }
@@ -17,6 +16,10 @@ const userSchema = new mongoose.Schema<IUser>({
   email: {
     type: String,
     required: true,
+  },
+  name: {
+    type: String,
+    required: false
   },
   password: {
     type: String,
@@ -32,9 +35,6 @@ const userSchema = new mongoose.Schema<IUser>({
   refreshTokens: {
     type: [String],
     required: false,
-  },
-  wish_list: {
-    type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Items" }]
   }
 });
 

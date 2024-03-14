@@ -20,6 +20,7 @@ const googleSignin = async (req: Request, res: Response) => {
             if (user == null) {
                 user = await User.create(
                     {
+                        'name': email,
                         'email': email,
                         'password': '0',
                         'imgUrl': payload?.picture
@@ -28,9 +29,7 @@ const googleSignin = async (req: Request, res: Response) => {
             const tokens = await generateTokens(user)
             res.status(200).send(
                 {
-                    email: user.email,
-                    _id: user._id,
-                    imgUrl: user.imgUrl,
+                    user,
                     ...tokens
                 })
         }
@@ -41,9 +40,10 @@ const googleSignin = async (req: Request, res: Response) => {
 }
 
 const register = async (req: Request, res: Response) => {
-    const email = req.body.email;
-    const password = req.body.password;
-    const imgUrl = req.body.imgUrl;
+    const email = req.body?.email;
+    const password = req.body?.password;
+    const imgUrl = req.body?.imgUrl;
+    const name = req.body?.name;
     if (!email || !password) {
         return res.status(400).send("missing email or password");
     }
@@ -58,14 +58,14 @@ const register = async (req: Request, res: Response) => {
             {
                 'email': email,
                 'password': encryptedPassword,
-                'imgUrl': imgUrl
+                'imgUrl': imgUrl,
+                'name': name
             });
         const tokens = await generateTokens(rs2)
+        const added_user = await User.findOne({"email": email});
         res.status(201).send(
             {
-                email: rs2.email,
-                _id: rs2._id,
-                imgUrl: rs2.imgUrl,
+                user: added_user,
                 ...tokens
             })
     } catch (err) {
@@ -105,7 +105,11 @@ const login = async (req: Request, res: Response) => {
         }
 
         const tokens = await generateTokens(user)
-        return res.status(200).send(tokens);
+        const user_response = {
+            user,
+            ...tokens
+        };
+        return res.status(200).send(user_response);
     } catch (err) {
         return res.status(400).send("error missing email or password");
     }

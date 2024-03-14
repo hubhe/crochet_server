@@ -33,6 +33,9 @@ import authMiddleware from "../common/auth_middleware";
 */
 router.get("/:id", authMiddleware, userController.getById.bind(userController));
 
+
+router.get("", authMiddleware, userController.get.bind(userController));
+
 /**
 * @swagger
 * /user/:id:
@@ -60,5 +63,7 @@ router.get("/:id", authMiddleware, userController.getById.bind(userController));
 *               $ref: '#/components/schemas/User'
 */
 router.put("/:id", authMiddleware, userController.putById.bind(userController));
+
+
 
 export default router;

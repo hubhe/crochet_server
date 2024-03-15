@@ -1,11 +1,11 @@
 {
-  "name": "sa_2023b",
+  "name": "Ceochet_Server",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "tsc && jest --detectOpenHandles --forceExit",
-    "testAuth": "tsc && jest --detectOpenHandles --forceExit ./src/tests/auth.test.ts",
+    "test": "tsc && jest --detectOpenHandles --forceExit --coverage",
+    "testAuth": "tsc && jest --detectOpenHandles --forceExit ./src/tests/auth.test.ts --watch",
     "testPost": "tsc && jest --detectOpenHandles --forceExit --runInBand ./src/tests/student_post.test.ts",
     "testFile": "tsc && jest --detectOpenHandles --forceExit --runInBand ./src/tests/file.test.ts",
     "start": "tsc && node ./dist/src/server.js",
@@ -13,7 +13,7 @@
     "prod": "cp .envprod .env && tsc -p tsconfig_prod.json && pm2 restart ecosystem.config.js --env production",
     "prod1": "cp .envprod .env && tsc -p tsconfig_prod.json &&  node ./dist/src/server.js"
   },
-  "author": "Eliav Menachi",
+  "author": "Yonatan and Adi",
   "license": "ISC",
   "dependencies": {
     "@types/bcrypt": "^5.0.2",

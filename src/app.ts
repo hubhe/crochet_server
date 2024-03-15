@@ -5,7 +5,6 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import itemRoute from "./routes/item_route";
 import authRoute from "./routes/auth_route";
-import fileRoute from "./routes/file_route";
 import userRoute from "./routes/user_route";
 import commentRoute from "./routes/comment_route";
 
@@ -29,7 +28,6 @@ const initApp = (): Promise<Express> => {
       })
       app.use("/items", itemRoute);
       app.use("/auth", authRoute);
-      app.use("/file", fileRoute);
       app.use("/user", userRoute);
       app.use("/comment", commentRoute);
       app.use("/public", express.static("public"));

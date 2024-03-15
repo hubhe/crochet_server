@@ -2,6 +2,7 @@ import express from "express";
 const router = express.Router();
 import userController from "../controllers/user_controller";
 import authMiddleware from "../common/auth_middleware";
+import { upload } from "../common/file_upload";
 
 /**
 * @swagger
@@ -62,7 +63,7 @@ router.get("", authMiddleware, userController.get.bind(userController));
 *             schema:
 *               $ref: '#/components/schemas/User'
 */
-router.put("/:id", authMiddleware, userController.putById.bind(userController));
+router.put("/:id", authMiddleware, upload.array("image"), userController.putById.bind(userController));
 
 
 

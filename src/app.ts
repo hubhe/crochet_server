@@ -7,6 +7,7 @@ import itemRoute from "./routes/item_route";
 import authRoute from "./routes/auth_route";
 import userRoute from "./routes/user_route";
 import commentRoute from "./routes/comment_route";
+import cors from 'cors'
 
 
 const initApp = (): Promise<Express> => {
@@ -17,6 +18,7 @@ const initApp = (): Promise<Express> => {
     const url = process.env.DB_URL;
     mongoose.connect(url!).then(() => {
       const app = express();
+      app.use(cors())
       app.use(bodyParser.json());
       app.use(bodyParser.urlencoded({ extended: true }));
       app.use((req, res, next) => {

@@ -35,7 +35,7 @@ import { upload } from "../common/file_upload";
 router.get("/:id", authMiddleware, userController.getById.bind(userController));
 
 
-router.get("", authMiddleware, userController.get.bind(userController));
+router.get("", authMiddleware, userController.getSelf.bind(userController));
 
 /**
 * @swagger

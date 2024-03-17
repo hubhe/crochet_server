@@ -5,8 +5,7 @@ export interface Iitem {
   name: string;
   price: string;
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "comments" }],
-  pictures_array: Array<string>;
-  how_many_bought: number,
+  picture: string;
 }
 
 const itemSchema = new mongoose.Schema({
@@ -20,12 +19,9 @@ const itemSchema = new mongoose.Schema({
     commnets: {
       type: [{ type: mongoose.Schema.Types.ObjectId, ref: "comments" }]
     },
-    pictures_array: {
-      type: [String]
+    picture: {
+      type: String
     },
-    how_many_bought: {
-      type: Number
-    }
   });
 
 export default mongoose.model<Iitem>("Items", itemSchema);

@@ -8,6 +8,7 @@ export interface IUser {
   imgUrl?: string;
   refreshTokens?: string[];
   comments: Array<{ type: mongoose.Schema.Types.ObjectId; ref: "comments" }>;
+  items: Array<{ type: mongoose.Schema.Types.ObjectId; ref: "Items"}>
 }
 
 const userSchema = new mongoose.Schema<IUser>({
@@ -25,6 +26,9 @@ const userSchema = new mongoose.Schema<IUser>({
   },
   imgUrl: {
     type: String,
+  },
+  items: {
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Items" }]
   },
   refreshTokens: {
     type: [String],

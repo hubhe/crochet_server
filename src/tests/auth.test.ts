@@ -112,7 +112,6 @@ expect(response2.statusCode).toBe(406);
     .post("/auth/register")
     .send(user);
     const accessToken = register.body.accessToken;
-    const refreshToken = register.body.refreshToken;
     await new Promise(resolve => setTimeout(() => resolve("done"), 5000));
 
     const response = await request(app)
@@ -126,11 +125,10 @@ expect(response2.statusCode).toBe(406);
     .post("/auth/register")
     .send(user);
   expect(register.statusCode).toBe(201);
-  const accessToken = register.body.accessToken;
   const refreshToken = register.body.refreshToken;
     const response = await request(app)
       .get("/auth/refresh")
-      .set("Authorization", "JWT " + refreshToken)
+      .set("refresh_token", refreshToken)
       .send();
     expect(response.statusCode).toBe(200);
     expect(response.body.accessToken).toBeDefined();

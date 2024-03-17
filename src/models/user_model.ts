@@ -6,9 +6,7 @@ export interface IUser {
   password: string;
   name: string;
   imgUrl?: string;
-  isAdmin?: boolean;
   refreshTokens?: string[];
-  in_cart: [{ type: mongoose.Schema.Types.ObjectId, ref: "Items" }];
   comments: Array<{ type: mongoose.Schema.Types.ObjectId; ref: "comments" }>;
 }
 
@@ -27,10 +25,6 @@ const userSchema = new mongoose.Schema<IUser>({
   },
   imgUrl: {
     type: String,
-  },
-  isAdmin: {
-    type: Boolean,
-    required: false,
   },
   refreshTokens: {
     type: [String],

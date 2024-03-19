@@ -1,6 +1,7 @@
 import express from "express";
 import itemController from "../controllers/item_controller";
 import authMiddleware from "../common/auth_middleware";
+import { upload } from "../common/file_upload";
 
 const router = express.Router();
 
@@ -114,7 +115,7 @@ router.get("/:id", itemController.getById.bind(itemController));
 *             schema:
 *               $ref: '#/components/schemas/Items'
 */
-router.post("/", authMiddleware, itemController.post.bind(itemController));
+router.post("/", authMiddleware, upload.array("image"),itemController.post.bind(itemController));
 
 /**
 * @swagger

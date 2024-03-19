@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 export interface Iitem {
   _id: string;
   name: string;
-  picture: string;
+  imgUrl: string;
   description: string;
 }
 
@@ -12,7 +12,7 @@ const itemSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
-    picture: {
+    imgUrl: {
       type: String
     },
     description: {

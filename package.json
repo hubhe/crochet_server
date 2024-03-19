@@ -11,7 +11,7 @@
     "start": "tsc && node ./src/server.ts",
     "dev": "nodemon ./src/server.ts",
     "prod": "cp .envprod .env && tsc -p tsconfig_prod.json && pm2 restart ecosystem.config.js --env production",
-    "prod1": "cp .envprod .env && tsc -p tsconfig_prod.json &&  node ./dist/src/server.js"
+    "prod1": "cp .envprod .env && tsc -p tsconfig_prod.json &&  node ./dist/server.js"
   },
   "author": "Yonatan and Adi",
   "license": "ISC",
@@ -29,8 +29,9 @@
     "eslint": "^8.55.0",
     "express": "^4.18.2",
     "google-auth-library": "^9.4.2",
+    "https": "^1.0.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.0.2",
+    "mongoose": "^8.2.2",
     "multer": "^1.4.5-lts.1",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0",

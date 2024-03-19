@@ -6,10 +6,10 @@ import { Request, Response } from "express";
 
 
 class ItemController extends BaseController<Iitem> {
-    async post(req: Request, res: Response) {
+    async post(req: Request<{}, {}, {}, {user: {_id: string}}>, res: Response) {
         try {
             const item = await this.model.create(req.body);
-            await UserModel.findOneAndUpdate({_id: req.body.user._id}, { $push: { items: item._id } })
+            await UserModel.findOneAndUpdate({_id: req.query.user._id}, { $push: { items: item._id } })
             res.status(201).send(item);
         } catch (err) {
             console.log(err);

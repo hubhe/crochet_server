@@ -30,6 +30,16 @@ class ItemController extends BaseController<Iitem> {
             res.status(500).json({ message: err.message });
         }
     }
+
+    async getSelfItems(req: Request<{}, {}, {}, {user: {_id: string}}>, res: Response) {
+        try {
+            const user = await UserModel.findOne({_id: req.query.user._id })
+            const result = await this.model.find({_id: {$in: user.items}})
+            res.send(result);
+        } catch (err) {
+            res.status(500).json({ message: err.message });
+        }
+    }
 }
 
 const itemController = new ItemController(ItemsModel);

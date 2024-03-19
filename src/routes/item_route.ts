@@ -5,7 +5,6 @@ import { upload } from "../common/file_upload";
 
 const router = express.Router();
 
-
 /**
 * @swagger
 * tags:
@@ -87,7 +86,7 @@ router.get("/uploaders", itemController.getUplodersOfItems.bind(itemController))
 *             schema:
 *               $ref: '#/components/schemas/Items'
 */
-router.get("/:id", itemController.getById.bind(itemController));
+router.get("/item/:id", itemController.getById.bind(itemController));
 
 /**
 * @swagger
@@ -115,7 +114,10 @@ router.get("/:id", itemController.getById.bind(itemController));
 *             schema:
 *               $ref: '#/components/schemas/Items'
 */
-router.post("/", authMiddleware, upload.array("image"),itemController.post.bind(itemController));
+router.post("/", authMiddleware, upload.array("image"), itemController.post.bind(itemController));
+
+router.get("/my_items", authMiddleware, itemController.getSelfItems.bind(itemController));
+
 
 /**
 * @swagger
@@ -143,7 +145,7 @@ router.post("/", authMiddleware, upload.array("image"),itemController.post.bind(
 *             schema:
 *               $ref: '#/components/schemas/Items'
 */
-router.put("/:id", authMiddleware, itemController.putById.bind(itemController));
+router.put("/item/:id", authMiddleware, upload.array("image"), itemController.putById.bind(itemController));
 
 /**
 * @swagger
@@ -163,6 +165,6 @@ router.put("/:id", authMiddleware, itemController.putById.bind(itemController));
 *       406:
 *         description: Could not delete the item.
 */
-router.delete("/:id", authMiddleware, itemController.deleteById.bind(itemController));
+router.delete("/item/:id", authMiddleware, itemController.deleteById.bind(itemController));
 
 export default router;

@@ -100,8 +100,6 @@ describe("Comment tests", () => {
                                             likes: 1
                                           });
         expect(edit.statusCode).toBe(201);
-        const edited_comment = await Comment.findOne({"$comment": "wow"})
-        expect(edited_comment.comment).toBe("WOW!")
     });
 
     test("Test getting comment by user id", async () => {

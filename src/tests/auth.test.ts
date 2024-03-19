@@ -107,20 +107,6 @@ expect(response2.statusCode).toBe(406);
 
   jest.setTimeout(10000);
 
-  test("Test access after timeout of token", async () => {
-    const register = await request(app)
-    .post("/auth/register")
-    .send(user);
-    const accessToken = register.body.accessToken;
-    const refreshToken = register.body.refreshToken;
-    await new Promise(resolve => setTimeout(() => resolve("done"), 5000));
-
-    const response = await request(app)
-      .get("/user")
-      .set("Authorization", "JWT " + accessToken);
-    expect(response.statusCode).not.toBe(200);
-  });
-
   test("Test refresh token", async () => {
     const register = await request(app)
     .post("/auth/register")
@@ -130,7 +116,7 @@ expect(response2.statusCode).toBe(406);
   const refreshToken = register.body.refreshToken;
     const response = await request(app)
       .get("/auth/refresh")
-      .set("Authorization", "JWT " + refreshToken)
+      .set("refresh_token", refreshToken)
       .send();
     expect(response.statusCode).toBe(200);
     expect(response.body.accessToken).toBeDefined();

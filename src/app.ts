@@ -18,7 +18,6 @@ const initApp = (): Promise<Express> => {
     mongoose.connect(url!, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        port: 21771 // Specify the port here
     } as any).then(() => {
       const app = express();
       app.use(cors())

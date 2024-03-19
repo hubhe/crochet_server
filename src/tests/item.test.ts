@@ -10,6 +10,7 @@ let app: Express;
 
 const item = {
     name: "testtest",
+    price: "10",
   }
 
 beforeAll(async () => {
@@ -46,6 +47,23 @@ describe("Items tests", () => {
         const items = await request(app).get(`/items/${respone._id}`);
         expect(items.statusCode).toBe(200);
         expect(items.body.name).toBe("testtest");
+    });
+
+    test("Test exchanger by one item", async () => {
+        process.env.EXHANGE = "1";
+        const respone = await Items.create(item);
+        const items = await request(app).get(`/items/${respone._id}`);
+        expect(items.statusCode).toBe(200);
+        expect(items.body.name).toBe("testtest");
+        expect(items.body.price).toMatch(item.price);
+    });
+
+    test("Test exchanger by items", async () => {
+        process.env.EXHANGE = "1";
+        const respone = await Items.create(item);
+        const items = await request(app).get(`/items/`);
+        expect(items.statusCode).toBe(200);
+        console.log(items.body);
     });
 
     test("Test posting an item when not logged in", async () => {

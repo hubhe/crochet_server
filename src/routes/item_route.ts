@@ -64,6 +64,8 @@ const router = express.Router();
 */
 router.get("/", itemController.get.bind(itemController));
 
+router.get("/uploaders", itemController.getUplodersOfItems.bind(itemController));
+
 /**
 * @swagger
 * /items/:id:

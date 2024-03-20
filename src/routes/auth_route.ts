@@ -1,6 +1,8 @@
 import express from "express";
 const router = express.Router();
 import authController from "../controllers/auth_controller";
+import { upload } from "../common/file_upload";
+
 /**
 * @swagger
 * tags:
@@ -60,7 +62,7 @@ import authController from "../controllers/auth_controller";
 *             schema:
 *               $ref: '#/components/schemas/User'
 */
-router.post("/register", authController.register);
+router.post("/register", upload.array("image"), authController.register);
 router.post("/google", authController.googleSignin);
 
 /**

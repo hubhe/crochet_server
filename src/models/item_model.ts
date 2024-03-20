@@ -3,10 +3,8 @@ import mongoose from "mongoose";
 export interface Iitem {
   _id: string;
   name: string;
-  price: string;
-  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "comments" }],
-  pictures_array: Array<string>;
-  how_many_bought: number,
+  imgUrl: string;
+  description: string;
 }
 
 const itemSchema = new mongoose.Schema({
@@ -14,17 +12,11 @@ const itemSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
-    price: {
+    imgUrl: {
       type: String
     },
-    commnets: {
-      type: [{ type: mongoose.Schema.Types.ObjectId, ref: "comments" }]
-    },
-    pictures_array: {
-      type: [String]
-    },
-    how_many_bought: {
-      type: Number
+    description: {
+      type: String
     }
   });
 

@@ -14,7 +14,7 @@ initApp().then((app) => {
         version: "1.0.0",
         description: "REST server including authentication using JWT and refresh token",
       },
-      servers: [{ url: "http://localhost:3000", },],
+      servers: [{ url: "http://localhost:4000", },],
     },
     apis: ["./src/routes/*.ts"],
   };
@@ -27,8 +27,8 @@ initApp().then((app) => {
   } else {
     console.log('PRODUCTION');
     const options2 = {
-      key: fs.readFileSync('../client-key.pem'),
-      cert: fs.readFileSync('../client-cert.pem')
+      key: fs.readFileSync('./client-key.pem'),
+      cert: fs.readFileSync('./client-cert.pem')
     };
     https.createServer(options2, app).listen(process.env.HTTPS_PORT);
   }

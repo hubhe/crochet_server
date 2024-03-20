@@ -1,9 +1,7 @@
 module.exports = {
   apps : [{
     name: 'my-app',
-    script: './src/server.ts', // Entry point of your application
-    watch: true, // Enable auto-restart on file changes
-    interpreter: '/usr/bin/ts-node', // Absolute path to ts-node
+    script: './dist/server.js', // Entry point of your application
     env: {
       NODE_ENV: 'development' // Environment variables for development
     },
